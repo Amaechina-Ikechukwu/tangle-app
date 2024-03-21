@@ -92,6 +92,7 @@ export function CustomTextInput(props) {
         backgroundColor: Colors[theme].tint,
         padding: 10,
         borderRadius: 10,
+        ...props.style,
       }}
     />
   );
@@ -125,16 +126,9 @@ export function CustomButton(props) {
 
   const handlePress = () => {
     setIsLoading(true);
-    randomWidth.value = withTiming(
-      100,
-      {
-        duration: 300, // Adjust duration as needed
-      },
-      () => {
-        setIsLoading(false);
-        onPress(); // Assuming onPress is a function you want to call after animation completes
-      }
-    );
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 7000);
   };
 
   return (

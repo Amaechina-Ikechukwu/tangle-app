@@ -5,11 +5,17 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Text } from "../../Themed";
 import LikeComponent from "../Post/LikeComponent";
 
-const DatingProfileCard = ({ item, navigation }) => {
+const DatingProfileCard = ({ item, navigation, from }) => {
   const enlargeImage = () => {
     navigation.navigate({
       name: "View Image",
       params: { image: item.imageurl },
+    });
+  };
+  const goToComments = () => {
+    navigation.navigate({
+      name: "Comments",
+      params: { item: item },
     });
   };
 
@@ -39,9 +45,11 @@ const DatingProfileCard = ({ item, navigation }) => {
 
       <View style={styles.iconContainer}>
         <LikeComponent postid={item.postid} liked={item.liked} />
-        <TouchableOpacity style={styles.iconWrapper}>
-          <FontAwesome name="comment" size={20} color="#FFFFFF" />
-        </TouchableOpacity>
+        {from !== "comments" && (
+          <TouchableOpacity onPress={goToComments} style={styles.iconWrapper}>
+            <FontAwesome name="comment" size={20} color="#FFFFFF" />
+          </TouchableOpacity>
+        )}
       </View>
 
       <View style={styles.overlayContent}>

@@ -36,6 +36,7 @@ import { View } from "../Themed";
 import { GetLocalData, SetLocalData } from "../services/Storage";
 import { GetPosts } from "../services/Posts/api";
 import ViewImageScreen from "../screens/app/ViewImageScreen";
+import CommentScreen from "../screens/app/Post/CommentScreen";
 function MainNavigator() {
   const { showNotification } = useNotification();
   const [route, setRoute] = useState(null);
@@ -68,7 +69,7 @@ function MainNavigator() {
       if (user !== null) {
         SetLocalData({ key: "loggedIn", value: { loggedIn: true } });
         initializeApp();
-        const { result } = await GetMatches({ token: user.uid });
+
         const profile = await GetProfile({
           token: user.uid,
           body: { user: user.uid },
@@ -76,10 +77,11 @@ function MainNavigator() {
 
         const posts = await GetPosts({ token: user?.uid });
 
-        setMatches(result);
-        setCurrentUser(profile.result);
-
+        const { result } = await GetMatches({ token: user.uid });
         setPosts(posts);
+        setCurrentUser(profile.result);
+        setMatches(result);
+
         SetLocalData({ key: "user", value: profile.result });
         SetLocalData({ key: "posts", value: posts });
       } else {
@@ -138,6 +140,15 @@ function MainNavigator() {
       <Stack.Screen name="Manage Account" component={ManageAccountScreen} />
       <Stack.Screen name="Select Location" component={SelectLocationScreen} />
       <Stack.Screen name="View Image" component={ViewImageScreen} />
+      <Stack.Screen
+        name="Comments"
+        component={CommentScreen}
+        options={{
+          headerLeft: () => null, // this hides the back button
+          headerShown: false,
+          title: null,
+        }}
+      />
     </Stack.Navigator>
   );
 }

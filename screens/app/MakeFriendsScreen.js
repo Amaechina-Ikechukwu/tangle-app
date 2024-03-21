@@ -56,8 +56,7 @@ const MakeFriendsScreen = () => {
 
   useEffect(() => {
     console.log(JSON.stringify(posts, null, 2));
-    getPosts();
-  }, []);
+  }, [posts]);
 
   return (
     <View>
