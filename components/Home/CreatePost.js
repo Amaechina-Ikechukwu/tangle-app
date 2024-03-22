@@ -260,6 +260,7 @@ export default function CreatePost() {
       )}
       <TouchableOpacity style={styles.postInput}>
         <TextInput
+          cursorColor={Colors.light.acccent}
           style={styles.postInput}
           value={postContent}
           onChangeText={(text) => setPostContent(text)}

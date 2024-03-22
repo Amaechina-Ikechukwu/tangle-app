@@ -10,68 +10,21 @@ import {
   ActivityIndicator,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import NavBar from "../../components/Match/Navbar";
-import { navigate } from "../../navigations/navigationRef";
-import { useStore } from "../../store/store";
+import NavBar from "../../../components/Match/Navbar";
+import { navigate } from "../../../navigations/navigationRef";
+import { useStore } from "../../../store/store";
 import { useShallow } from "zustand/react/shallow";
-import Colors from "../../Colors";
-import ActivityLoader from "../../utils/ActivityLoader";
-import { auth } from "../../firebase";
-import { GetMatches } from "../../services/Matches/api";
-import { CustomButton } from "../../Themed";
+import Colors from "../../../Colors";
+import ActivityLoader from "../../../utils/ActivityLoader";
+import { auth } from "../../../firebase";
+import { GetMatches } from "../../../services/Matches/api";
+import { CustomButton } from "../../../Themed";
 
 const MatchScreen = () => {
   const [matches, setMatches] = useStore(
     useShallow((state) => [state.matches, state.setMatches])
   );
-  // Sample data
-  const likes = 120;
-  const comments = 45;
-  const userImages = [
-    require("../../assets/images/onboarding/face_1.jpg"),
-    require("../../assets/images/onboarding/face_1.jpg"),
-    // ... more user images
-  ];
 
-  // Sample data
-  const users = [
-    {
-      id: "1",
-      image: require("../../assets/images/onboarding/face_1.jpg"),
-      name: "Bob",
-      age: 28,
-      online: true,
-      distance: "3 km",
-      country: "NYC",
-    },
-    {
-      id: "2",
-      image: require("../../assets/images/onboarding/face_2.jpg"),
-      name: "Alice",
-      age: 25,
-      online: false,
-      distance: "5 km",
-      country: "Jamaica",
-    },
-    {
-      id: "3",
-      image: require("../../assets/images/onboarding/face_3.jpg"),
-      name: "Charlie",
-      age: 30,
-      online: true,
-      distance: "2 km",
-      country: "Canada",
-    },
-    {
-      id: "4",
-      image: require("../../assets/images/onboarding/face_4.jpg"),
-      name: "Kevin",
-      age: 27,
-      online: false,
-      distance: "7 km",
-      country: "English",
-    },
-  ];
   const reload = async () => {
     const { result } = await GetMatches({ token: auth.currentUser.uid });
     setMatches(result);

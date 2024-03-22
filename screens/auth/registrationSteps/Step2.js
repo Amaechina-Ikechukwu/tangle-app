@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+} from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import Colors from "../../../Colors";
 
 const Step2 = ({ name, setName, nextStep, prevStep, step }) => {
-  
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleNextStep = () => {
     if (!name) {
-      setError('Please enter your full name');
+      setError("Please enter your full name");
     } else {
-      setError('');
+      setError("");
       nextStep(); // Proceed to the next step only if no errors
     }
   };
@@ -25,12 +32,13 @@ const Step2 = ({ name, setName, nextStep, prevStep, step }) => {
 
       {/* Image related to inputs */}
       <Image
-        source={require('../../../assets/images/register/02.png')} // Replace with your image URL or local image path
+        source={require("../../../assets/images/register/02.png")} // Replace with your image URL or local image path
         style={styles.inputImage}
       />
 
       <View style={styles.inputContainer}>
         <TextInput
+          cursorColor={Colors.light.acccent}
           value={name}
           onChangeText={setName}
           placeholder="Enter your Name"
@@ -38,8 +46,6 @@ const Step2 = ({ name, setName, nextStep, prevStep, step }) => {
         />
         {error ? <Text style={styles.errorText}>{error}</Text> : null}
       </View>
-
-
 
       {/* Back Button */}
       <TouchableOpacity style={styles.backButton} onPress={prevStep}>
@@ -51,13 +57,14 @@ const Step2 = ({ name, setName, nextStep, prevStep, step }) => {
         <Icon name="arrow-right" size={20} color="white" />
       </TouchableOpacity>
 
-        <View style={styles.bottomContainer}>
-          <Text style={styles.stepText}>Step {step} of {totalSteps}</Text>
-          <View style={styles.progressBarContainer}>
-            <View style={[styles.progressBar, { width: `${progress}%` }]} />
-          </View>
+      <View style={styles.bottomContainer}>
+        <Text style={styles.stepText}>
+          Step {step} of {totalSteps}
+        </Text>
+        <View style={styles.progressBarContainer}>
+          <View style={[styles.progressBar, { width: `${progress}%` }]} />
+        </View>
       </View>
-
     </View>
   );
 };
@@ -65,28 +72,28 @@ const Step2 = ({ name, setName, nextStep, prevStep, step }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     padding: 20,
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 15,
   },
   inputContainer: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100%",
   },
   input: {
     borderWidth: 1,
-    borderColor: '#FF355E',
+    borderColor: "#FF355E",
     padding: 15,
     marginBottom: 10,
-    width: '100%',
+    width: "100%",
   },
   errorText: {
-    color: 'red',
+    color: "red",
     fontSize: 16,
     marginBottom: 10,
   },
@@ -96,42 +103,42 @@ const styles = StyleSheet.create({
     marginBottom: 20, // Adjust as needed
   },
   bottomContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 80,
-    width: '100%',
-    alignItems: 'center',
+    width: "100%",
+    alignItems: "center",
   },
   stepText: {
-    color: '#FF355E',
+    color: "#FF355E",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 5,
   },
   progressBarContainer: {
     height: 3,
-    width: '100%',
-    backgroundColor: '#e0e0e0',
+    width: "100%",
+    backgroundColor: "#e0e0e0",
     borderRadius: 5,
   },
   progressBar: {
-    height: '100%',
-    backgroundColor: '#FF355E',
+    height: "100%",
+    backgroundColor: "#FF355E",
     borderRadius: 5,
   },
   backButton: {
-    position: 'absolute',
+    position: "absolute",
     left: 20,
     bottom: 20,
-    backgroundColor: '#FF355E',
+    backgroundColor: "#FF355E",
     borderRadius: 20,
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
   nextButton: {
-    position: 'absolute',
+    position: "absolute",
     right: 20,
     bottom: 20,
-    backgroundColor: '#FF355E',
+    backgroundColor: "#FF355E",
     borderRadius: 20,
     paddingVertical: 10,
     paddingHorizontal: 20,

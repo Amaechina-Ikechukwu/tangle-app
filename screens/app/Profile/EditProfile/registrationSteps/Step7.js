@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import Colors from "../../../../../Colors";
 
 const Step7 = ({ bio, setBio, nextStep, prevStep, step }) => {
   // Calculate progress
@@ -17,6 +18,7 @@ const Step7 = ({ bio, setBio, nextStep, prevStep, step }) => {
     <View style={styles.container}>
       <View style={{ width: "70%" }}>
         <TextInput
+          cursorColor={Colors.light.acccent}
           value={bio}
           onChangeText={setBio}
           placeholder="Write a short bio"

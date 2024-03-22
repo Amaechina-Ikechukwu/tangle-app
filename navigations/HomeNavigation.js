@@ -2,14 +2,14 @@
 import { ActivityIndicator, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import HomeScreen from "../screens/app/HomeScreen";
+import HomeScreen from "../screens/app/Post/HomeScreen";
 // import ProfileScreen from '../screens/app/ProfileScreen';
-import DiscoveryScreen from "../screens/app/DiscoveryScreen";
-import MatchesScreen from "../screens/app/MatchesScreen";
+import DiscoveryScreen from "../screens/app/Discovery/DiscoveryScreen";
+import MatchesScreen from "../screens/app/Match/MatchesScreen";
 
 // import LocationScreen from '../screens/app/DiscoveryScreen';
-import ChatScreen from "../screens/app/ChatScreen";
-import BillingScreen from "../screens/app/BillingScreen";
+import ChatScreen from "../screens/app/Chats/ChatScreen";
+import BillingScreen from "../screens/app/Account/BillingScreen";
 import MatchDetailsScreen from "../screens/app/Match/MatchDetailsScreen";
 import Icon from "react-native-vector-icons/Ionicons"; // Or any other icon set you prefer
 import { auth, db } from "../firebase";

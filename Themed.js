@@ -84,6 +84,7 @@ export function CustomTextInput(props) {
   const theme = useColorScheme() ?? "light";
   return (
     <TextInput
+      cursorColor={Colors.light.acccent}
       placeholder={props.placeholder}
       keyboardType={props.keyboardType}
       value={props.value}

@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import Colors from "../../../../../Colors";
 
 const Step3 = ({ email, setEmail, nextStep, prevStep, step }) => {
   const [error, setError] = useState("");
@@ -34,6 +35,7 @@ const Step3 = ({ email, setEmail, nextStep, prevStep, step }) => {
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
+          cursorColor={Colors.light.acccent}
           value={email}
           onChangeText={setEmail}
           placeholder="Enter your email"

@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import Colors from "../../../../../Colors";
 
 const Step2 = ({ name, setName, nextStep, prevStep, step }) => {
   const [error, setError] = useState("");
@@ -16,6 +17,7 @@ const Step2 = ({ name, setName, nextStep, prevStep, step }) => {
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
+          cursorColor={Colors.light.acccent}
           value={name}
           onChangeText={setName}
           placeholder="Enter your Name"

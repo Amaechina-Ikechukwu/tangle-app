@@ -14,9 +14,10 @@ import {
 import { FontAwesome } from "@expo/vector-icons"; // Remember to install @expo/vector-icons if you haven't
 import { Text } from "galio-framework";
 import { useRoute } from "@react-navigation/native";
-import { auth, db } from "../../firebase";
+import { auth, db } from "../../../firebase";
 import { onValue, ref } from "firebase/database";
-import { SendMessage } from "../../services/Chats/api";
+import { SendMessage } from "../../../services/Chats/api";
+import Colors from "../../../Colors";
 
 const HeaderComponent = () => {
   const { params } = useRoute();
@@ -50,6 +51,7 @@ const InputArea = ({ sendMessage, inputText, setInputText }) => {
 
       <View style={styles.inputWithIcons}>
         <TextInput
+          cursorColor={Colors.light.acccent}
           value={inputText}
           onChangeText={setInputText}
           style={styles.input}

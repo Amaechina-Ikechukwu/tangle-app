@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet, RefreshControl, View, Text } from "react-native";
-import { useStore } from "../../store/store";
+import { useStore } from "../../../store/store";
 import { useShallow } from "zustand/react/shallow";
-import { GetPosts } from "../../services/Posts/api";
-import { auth } from "../../firebase";
-import DatingProfileCard from "../../components/feature/DatingProfileCard";
-import ActivityLoader from "../../utils/ActivityLoader";
-import CustomNavbar from "../../components/CustomNavbar";
-import CreatePost from "../../components/Home/CreatePost";
-import Statuses from "../../components/Home/Statuses";
+import { GetPosts } from "../../../services/Posts/api";
+import { auth } from "../../../firebase";
+import DatingProfileCard from "../../../components/feature/DatingProfileCard";
+import ActivityLoader from "../../../utils/ActivityLoader";
+import CustomNavbar from "../../../components/CustomNavbar";
+import CreatePost from "../../../components/Home/CreatePost";
+import Stories from "../../../components/Home/Stories";
 import { useNavigation } from "@react-navigation/native";
-import { useNotification } from "../../context/Notifications";
+import { useNotification } from "../../../context/Notifications";
 
 const Header = () => {
   return (
     <View style={{ gap: 5 }}>
       <CustomNavbar />
-      <Statuses />
+      <Stories />
       <CreatePost />
     </View>
   );
@@ -54,9 +54,7 @@ const MakeFriendsScreen = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(JSON.stringify(posts, null, 2));
-  }, [posts]);
+  useEffect(() => {}, [posts]);
 
   return (
     <View>

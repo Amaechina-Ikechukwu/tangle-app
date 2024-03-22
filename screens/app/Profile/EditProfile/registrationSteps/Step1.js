@@ -8,12 +8,14 @@ import {
   Image,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import Colors from "../../../../../Colors";
 
 const Step1 = ({ username, setUsername, nextStep, step }) => {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
+          cursorColor={Colors.light.acccent}
           value={username}
           onChangeText={setUsername}
           placeholder="Enter your User Name"

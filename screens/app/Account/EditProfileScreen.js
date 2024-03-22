@@ -13,6 +13,7 @@ import {
 import { PaperSelect } from "react-native-paper-select";
 
 import * as ImagePicker from "expo-image-picker";
+import Colors from "../../../Colors";
 const EditProfileScreen = () => {
   const [index, setIndex] = useState(0);
   const [userInfo, setUserInfo] = useState();
@@ -104,6 +105,7 @@ const EditProfileScreen = () => {
         </View>
         {/* <Text>{JSON.stringify( userData)}</Text> */}
         <TextInput
+          cursorColor={Colors.light.acccent}
           label="Username"
           value={username}
           mode="outlined"
@@ -112,6 +114,7 @@ const EditProfileScreen = () => {
           style={styles.input}
         />
         <TextInput
+          cursorColor={Colors.light.acccent}
           label="Email"
           value={email}
           outlineStyle={{ borderColor: "#ececec" }}
@@ -120,6 +123,7 @@ const EditProfileScreen = () => {
           style={styles.input}
         />
         <TextInput
+          cursorColor={Colors.light.acccent}
           label="Phone"
           value={phone}
           outlineStyle={{ borderColor: "#ececec" }}
@@ -128,6 +132,7 @@ const EditProfileScreen = () => {
           style={styles.input}
         />
         <TextInput
+          cursorColor={Colors.light.acccent}
           label="Age"
           value={age}
           outlineStyle={{ borderColor: "#ececec" }}
@@ -155,6 +160,7 @@ const EditProfileScreen = () => {
         />
 
         <TextInput
+          cursorColor={Colors.light.acccent}
           label="bio"
           value={bio}
           mode="outlined"

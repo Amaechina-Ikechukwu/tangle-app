@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+} from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import Colors from "../../../Colors";
 
 const Step1 = ({ username, setUsername, nextStep, step }) => {
-  
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleNextStep = () => {
     let hasError = false;
 
     if (!username) {
-      setError('Please enter your username');
+      setError("Please enter your username");
       hasError = true;
     } else {
-      setError('');
+      setError("");
     }
 
     if (!hasError) {
@@ -27,9 +34,9 @@ const Step1 = ({ username, setUsername, nextStep, step }) => {
 
   return (
     <View style={styles.container}>
-        {/* Image related to inputs */}
-        <Image
-        source={require('../../../assets/images/register/01.png')} // Replace with your image URL or local image path
+      {/* Image related to inputs */}
+      <Image
+        source={require("../../../assets/images/register/01.png")} // Replace with your image URL or local image path
         style={styles.inputImage}
       />
 
@@ -37,6 +44,7 @@ const Step1 = ({ username, setUsername, nextStep, step }) => {
 
       <View style={styles.inputContainer}>
         <TextInput
+          cursorColor={Colors.light.acccent}
           value={username}
           onChangeText={setUsername}
           placeholder="Enter your User Name"
@@ -45,14 +53,15 @@ const Step1 = ({ username, setUsername, nextStep, step }) => {
         {error ? <Text style={styles.errorText}>{error}</Text> : null}
       </View>
 
-
       {/* Progress Bar and Step Text at the Bottom */}
       <TouchableOpacity style={styles.nextButton} onPress={handleNextStep}>
         <Icon name="arrow-right" size={20} color="white" />
       </TouchableOpacity>
 
       <View style={styles.bottomContainer}>
-        <Text style={styles.stepText}>Step {step} of {totalSteps}</Text>
+        <Text style={styles.stepText}>
+          Step {step} of {totalSteps}
+        </Text>
         <View style={styles.progressBarContainer}>
           <View style={[styles.progressBar, { width: `${progress}%` }]} />
         </View>
@@ -64,28 +73,28 @@ const Step1 = ({ username, setUsername, nextStep, step }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     padding: 20,
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 15,
   },
   inputContainer: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100%",
   },
   input: {
     borderWidth: 1,
-    borderColor: '#FF355E',
+    borderColor: "#FF355E",
     padding: 15,
     marginBottom: 10,
-    width: '100%',
+    width: "100%",
   },
   errorText: {
-    color: 'red',
+    color: "red",
     fontSize: 16,
     marginBottom: 10,
   },
@@ -95,39 +104,39 @@ const styles = StyleSheet.create({
     marginBottom: 20, // Adjust as needed
   },
   bottomContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 80,
-    width: '100%',
-    alignItems: 'center',
+    width: "100%",
+    alignItems: "center",
   },
   stepText: {
-    color: '#FF355E',
+    color: "#FF355E",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 5,
   },
   progressBarContainer: {
     height: 3,
-    width: '100%',
-    backgroundColor: '#e0e0e0',
+    width: "100%",
+    backgroundColor: "#e0e0e0",
     borderRadius: 5,
   },
   progressBar: {
-    height: '100%',
-    backgroundColor: '#FF355E',
+    height: "100%",
+    backgroundColor: "#FF355E",
     borderRadius: 5,
   },
   bottomContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 80,
-    width: '100%',
-    alignItems: 'center',
+    width: "100%",
+    alignItems: "center",
   },
   nextButton: {
-    position: 'absolute',
+    position: "absolute",
     right: 20,
     bottom: 20,
-    backgroundColor: '#FF355E',
+    backgroundColor: "#FF355E",
     borderRadius: 20,
     paddingVertical: 10,
     paddingHorizontal: 20,

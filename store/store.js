@@ -8,10 +8,14 @@ const useStore = create((set) => ({
   chattingWith: null,
   chatList: [],
   posts: [],
+  storyList: [],
+  stories: null,
   setMatches: (matches) => set((state) => ({ matches: matches })),
   setCurrentUser: (user) => set((state) => ({ currentUser: user })),
   setChattingWith: (chat) => set((state) => ({ chattingWith: chat })),
   setChatList: (chatlist) => set((state) => ({ chatList: chatlist })),
+  setStoryList: (storylist) => set((state) => ({ storyList: storylist })),
+  setStories: (stories) => set((state) => ({ stories: stories })),
   setPosts: (posts) => set((state) => ({ posts: posts })),
   setClearAll: () =>
     set((state) => ({

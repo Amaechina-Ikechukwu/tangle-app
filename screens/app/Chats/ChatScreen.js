@@ -9,17 +9,22 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-import { navigate } from "../../navigations/navigationRef";
-import { ChatList } from "../../services/Chats/api";
-import { auth } from "../../firebase";
-import { useStore } from "../../store/store";
+import { navigate } from "../../../navigations/navigationRef";
+import { ChatList } from "../../../services/Chats/api";
+import { auth } from "../../../firebase";
+import { useStore } from "../../../store/store";
 import { useShallow } from "zustand/react/shallow";
-import ActivityLoader from "../../utils/ActivityLoader";
-import { CustomButton } from "../../Themed";
+import ActivityLoader from "../../../utils/ActivityLoader";
 
 const recentMatches = [
-  { id: "a", imageUrl: require("../../assets/images/onboarding/face_1.jpg") },
-  { id: "b", imageUrl: require("../../assets/images/onboarding/face_2.jpg") },
+  {
+    id: "a",
+    imageUrl: require("../../../assets/images/onboarding/face_1.jpg"),
+  },
+  {
+    id: "b",
+    imageUrl: require("../../../assets/images/onboarding/face_2.jpg"),
+  },
 ];
 
 const ChatScreen = () => {

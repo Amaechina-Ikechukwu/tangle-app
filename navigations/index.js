@@ -11,11 +11,11 @@ import LoginScreen from "../screens/auth/LoginScreen";
 import SignupScreen from "../screens/auth/SignupScreen";
 import RegistrationScreen from "../screens/auth/RegistrationScreen";
 import OnboardingScreen from "../screens/auth/OnBoardingScreen";
-import BillingScreen from "../screens/app/BillingScreen";
+import BillingScreen from "../screens/app/Account/BillingScreen";
 import MatchDetails from "../screens/app/Match/MatchDetailsScreen";
-import MessageDetails from "../screens/app/MessageDetails";
-import DiscoveryInterest from "../screens/app/DiscoveryInterest";
-import ProfileDetailsScreen from "../screens/app/ProfileDetailsScreen";
+import MessageDetails from "../screens/app/Chats/MessageDetails";
+import DiscoveryInterest from "../screens/app/Discovery/DiscoveryInterest";
+import ProfileDetailsScreen from "../screens/app/Profile/ViewProfile/ProfileDetailsScreen";
 import ManageAccountScreen from "../screens/app/Account/ManageAccountScreen";
 import EditProfileScreen from "../screens/app/Account/EditProfileScreen";
 import LocationScreen from "../screens/app/Account/LocationScreen";
@@ -37,15 +37,26 @@ import { GetLocalData, SetLocalData } from "../services/Storage";
 import { GetPosts } from "../services/Posts/api";
 import ViewImageScreen from "../screens/app/ViewImageScreen";
 import CommentScreen from "../screens/app/Post/CommentScreen";
+import { GetStories, GetStoryList } from "../services/Stories/api";
+import CreateStoriesScreen from "../screens/app/Post/CreateStoriesScreen";
 function MainNavigator() {
   const { showNotification } = useNotification();
   const [route, setRoute] = useState(null);
-  const [matches, setMatches, setCurrentUser, setPosts] = useStore(
+  const [
+    matches,
+    setMatches,
+    setCurrentUser,
+    setPosts,
+    setStoryList,
+    setStories,
+  ] = useStore(
     useShallow((state) => [
       state.matches,
       state.setMatches,
       state.setCurrentUser,
       state.setPosts,
+      state.setStoryList,
+      state.setStories,
     ])
   );
   const navigation = useNavigation();
@@ -54,6 +65,10 @@ function MainNavigator() {
     setCurrentUser(user);
     const { loggedIn } = await GetLocalData({ key: "loggedIn" });
     const posts = await GetLocalData({ key: "posts" });
+    const storylist = await GetLocalData({ key: "storylist" });
+    const stories = await GetLocalData({ key: "stories" });
+    setStoryList(storylist);
+    setStories(stories);
     setPosts(posts);
     if (loggedIn) {
       setRoute("Home Navigation");
@@ -76,14 +91,21 @@ function MainNavigator() {
         });
 
         const posts = await GetPosts({ token: user?.uid });
+        const story = await GetStoryList({ token: user?.uid });
+        const stories = await GetStories({ token: user?.uid });
 
         const { result } = await GetMatches({ token: user.uid });
-        setPosts(posts);
-        setCurrentUser(profile.result);
-        setMatches(result);
 
+        setCurrentUser(profile.result);
+
+        setStoryList(story);
+        setPosts(posts);
+        setStories(stories);
+        setMatches(result);
         SetLocalData({ key: "user", value: profile.result });
-        SetLocalData({ key: "posts", value: posts });
+        SetLocalData({ key: "posts", value: posts.slice(0, 10) });
+        SetLocalData({ key: "storylist", value: story?.slice(0, 10) });
+        SetLocalData({ key: "stories", value: stories });
       } else {
         SetLocalData({ key: "loggedIn", value: { loggedIn: false } });
         setRoute("Login");
@@ -143,6 +165,15 @@ function MainNavigator() {
       <Stack.Screen
         name="Comments"
         component={CommentScreen}
+        options={{
+          headerLeft: () => null, // this hides the back button
+          headerShown: false,
+          title: null,
+        }}
+      />
+      <Stack.Screen
+        name="Create Story"
+        component={CreateStoriesScreen}
         options={{
           headerLeft: () => null, // this hides the back button
           headerShown: false,

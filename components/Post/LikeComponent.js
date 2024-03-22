@@ -7,7 +7,7 @@ import Colors from "../../Colors";
 export default function LikeComponent({ postid, liked }) {
   const [like, setLike] = useState(liked);
   const reaction = async () => {
-    if (like == false) {
+    if (like == false || like == null) {
       setLike(true);
       const result = await LikePost({
         token: auth?.currentUser?.uid,
