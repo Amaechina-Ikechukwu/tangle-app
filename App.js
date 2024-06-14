@@ -37,25 +37,25 @@ export default function App() {
   const appurl = Linking.createURL("");
 
   return (
-    // <PaperProvider>
-    //   <StripeProvider
-    //     publishableKey={process.env.EXPO_PUBLIC_PUBLISHABLE_KEY}
-    //     urlScheme={appurl} // required for 3D Secure and bank redirects
-    //     merchantIdentifier="merchant.com.tangles" // required for Apple Pay
-    //   >
-    <NotificationProvider>
-      <PushNotificationProvider>
-        <StatusBar />
+    <PaperProvider>
+      {/* <StripeProvider
+        publishableKey={process.env.EXPO_PUBLIC_PUBLISHABLE_KEY}
+        urlScheme={appurl} // required for 3D Secure and bank redirects
+        merchantIdentifier="merchant.com.tangles" // required for Apple Pay
+      > */}
+      <NotificationProvider>
+        <PushNotificationProvider>
+          <StatusBar />
 
-        {/* <ModalProvider stack={modalStack}> */}
-        <NavigationContainer ref={navigationRef}>
-          <MainNavigator />
-        </NavigationContainer>
-        {/* </ModalProvider> */}
-      </PushNotificationProvider>
-    </NotificationProvider>
-    //   </StripeProvider>
-    // </PaperProvider>
+          {/* <ModalProvider stack={modalStack}> */}
+          <NavigationContainer ref={navigationRef}>
+            <MainNavigator />
+          </NavigationContainer>
+          {/* </ModalProvider> */}
+        </PushNotificationProvider>
+      </NotificationProvider>
+      {/* </StripeProvider> */}
+    </PaperProvider>
   );
 }
 

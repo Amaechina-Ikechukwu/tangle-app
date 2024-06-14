@@ -8,7 +8,7 @@ export default function StoryView({ views, author, storyid, close }) {
   const isCurrentUserPost = author == auth?.currentUser?.uid;
   const openList = () => {
     if (isCurrentUserPost) {
-      close();
+      // close();
       navigate({
         name: "List Of Users On Action",
         params: {
