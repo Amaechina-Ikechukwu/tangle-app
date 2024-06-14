@@ -16,9 +16,6 @@
         "buildType": "apk"
       }
     },
-    "production": {}
-  },
-  "submit": {
     "production": {
       "android": {
         "buildType": "apk"
@@ -27,5 +24,8 @@
         "EXPO_PUBLIC_API_URL": "https://tangle-api.onrender.com"
       }
     }
+  },
+  "submit": {
+    "production": {}
   }
 }
