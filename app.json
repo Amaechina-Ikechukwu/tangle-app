@@ -1,8 +1,9 @@
 {
   "expo": {
-    "name": "tangle5",
+    "name": "Tangles",
     "slug": "tangle5",
     "version": "1.0.0",
+    "scheme": "tangle5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,10 +19,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ikaychina.tangle5"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0aecb55c-5b6b-4bd6-850e-8e5db4567cce"
+      }
     }
   }
 }
