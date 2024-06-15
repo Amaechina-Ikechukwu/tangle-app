@@ -95,15 +95,9 @@ const LoginScreen = ({ navigation }) => {
           {passwordError && (
             <Text style={{ color: "red" }}>{passwordError}</Text>
           )}
-          <View>
-            <Button
-              mode="contained"
-              style={styles.loginButton}
-              onPress={handleLogin}
-            >
-              Login
-            </Button>
-          </View>
+          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+            <Text style={{ color: "white" }}>Login</Text>
+          </TouchableOpacity>
 
           <View style={styles.hrContainer}>
             <View style={styles.hrLine} />
@@ -186,14 +180,6 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
 
-  loginButton: {
-    backgroundColor: "#5a67d8",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 6,
-  },
-
   loginButtonText: {
     color: "#ffffff",
   },
@@ -219,13 +205,14 @@ const styles = StyleSheet.create({
   },
 
   loginButton: {
-    width: "100%", // Full-width
     height: 50,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
     backgroundColor: "#f91545",
+    width: "100%",
+    borderRadius: 5,
   },
 
   logoContainer: {
