@@ -104,20 +104,20 @@ function HomeNavigation() {
     }
   };
 
-  // useEffect(() => {
-  //   const dmsRef = ref(db, "iec");
+  useEffect(() => {
+    const dmsRef = ref(db, "iec");
 
-  //   // Set up the listener and store its reference
-  //   const listener = onChildChanged(dmsRef, (snapshot) => {
-  //     console.log("gere");
-  //   });
+    // Set up the listener and store its reference
+    const listener = onChildChanged(dmsRef, (snapshot) => {
+      console.log("gere");
+    });
 
-  //   // Return a cleanup function to remove the listener when component unmounts
-  //   return () => {
-  //     // Call the off method on the listener reference
-  //     off(dmsRef, "child_added", listener);
-  //   };
-  // }, []);
+    // Return a cleanup function to remove the listener when component unmounts
+    return () => {
+      // Call the off method on the listener reference
+      off(dmsRef, "child_added", listener);
+    };
+  }, []);
   useEffect(() => {
     const dmsRef = ref(db, "dms");
 

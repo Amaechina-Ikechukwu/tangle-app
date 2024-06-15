@@ -20,8 +20,6 @@ export const GeneralPut = async (endpoint, token) => {
 
     return "done";
   } catch (error) {
-    // Handle error appropriately, e.g., logging or throwing
-    console.error("Error fetching data:", error);
     throw error;
   }
 };

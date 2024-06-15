@@ -21,8 +21,6 @@ export const GeneralPatch = async (endpoint, token, requestBody) => {
 
     return data;
   } catch (error) {
-    // Handle error appropriately, e.g., logging or throwing
-    console.error("Error fetching data:", error);
     throw error;
   }
 };

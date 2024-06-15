@@ -279,20 +279,22 @@ function MainNavigator() {
   }, [currentUser]);
 
   useEffect(() => {
-    const handleAppStateChange = (nextAppState) => {
-      if (nextAppState === "active") {
-        // App is in foreground
-        UpdatePresence({ status: "online" });
-      } else {
-        // App is in background
-        UpdatePresence({ status: "offline" });
-      }
-    };
+    if (currentUser !== null) {
+      const handleAppStateChange = (nextAppState) => {
+        if (nextAppState === "active") {
+          // App is in foreground
+          UpdatePresence({ status: "online" });
+        } else {
+          // App is in background
+          UpdatePresence({ status: "offline" });
+        }
+      };
 
-    AppState.addEventListener("change", handleAppStateChange);
+      AppState.addEventListener("change", handleAppStateChange);
 
-    return () => {};
-  }, [auth]);
+      return () => {};
+    }
+  }, [auth, currentUser]);
   try {
     return (
       <>

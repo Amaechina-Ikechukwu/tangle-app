@@ -106,16 +106,18 @@ export default function Stories() {
     setOpenModal(!openModal);
   };
   const checkLengthOfStoryPosted = async () => {
-    const { result } = await GeneralGet(
-      "stories/storieslength",
-      currentUser?.userKey
-    );
+    if (currentUser !== null) {
+      const { result } = await GeneralGet(
+        "stories/storieslength",
+        currentUser?.userKey
+      );
 
-    setStoryLength(result);
+      setStoryLength(result);
+    }
   };
   useEffect(() => {
     checkLengthOfStoryPosted();
-  }, [storyList]);
+  }, [storyList, currentUser]);
   const [openModal, setOpenModal] = useState(false);
   return (
     <View>
