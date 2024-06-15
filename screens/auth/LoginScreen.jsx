@@ -8,9 +8,8 @@ import {
   View,
   Modal,
 } from "react-native";
-import { Input, Button, Text } from "galio-framework";
 
-import { Snackbar } from "react-native-paper";
+import { Button, Snackbar, Text, TextInput } from "react-native-paper";
 
 import { useNotification } from "../../context/Notifications";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -59,107 +58,109 @@ const LoginScreen = ({ navigation }) => {
       showNotification("Invaild login details");
     }
   };
-
-  return (
-    <>
-      <KeyboardAvoidingView style={styles.container}>
-        <View style={styles.textContainer}>
-          <Image
+  try {
+    return (
+      <>
+        <KeyboardAvoidingView style={styles.container}>
+          <View style={styles.textContainer}>
+            {/* <Image
             source={require("../../assets/logo.png")}
             style={styles.logo}
+          /> */}
+          </View>
+
+          <Text style={styles.header}>
+            Login: Unlock the Door to Your Heart. 🔐❤️
+          </Text>
+          <TextInput
+            mode="outlined"
+            label="Enter email address"
+            value={email}
+            onChangeText={setEmail}
+            cursorColor="#f91545"
+            activeOutlineColor="#f91545"
           />
-        </View>
 
-        <Text style={styles.header}>
-          Login: Unlock the Door to Your Heart. 🔐❤️
-        </Text>
-        <Input
-          placeholder="Enter email address"
-          onChangeText={setEmail}
-          textContentType="emailAddress"
-          value={email}
-          icon="user"
-          color="#22172A"
-          family="antdesign"
-          iconSize={14}
-          iconColor="pink"
-          type="email-address"
-        />
-        {emailError && <Text style={{ color: "red" }}>{emailError}</Text>}
-        <Text>{loginMessage}</Text>
-        <Input
-          placeholder="Enter your password"
-          iconColor="pink"
-          autoCapitalize={false}
-          iconSize={14}
-          onChangeText={setPassword}
-          value={password}
-          family="antdesign"
-          icon="lock"
-          textContentType="password"
-          password
-          viewPass
-        />
-        {passwordError && <Text style={{ color: "red" }}>{passwordError}</Text>}
+          {emailError && <Text style={{ color: "red" }}>{emailError}</Text>}
+          <Text>{loginMessage}</Text>
+          <TextInput
+            mode="outlined"
+            label="Enter correct password"
+            value={password}
+            onChangeText={setPassword}
+            cursorColor="#f91545"
+            activeOutlineColor="#f91545"
+            secureTextEntry
+          />
+          {passwordError && (
+            <Text style={{ color: "red" }}>{passwordError}</Text>
+          )}
+          <View>
+            <Button
+              mode="contained"
+              style={styles.loginButton}
+              onPress={handleLogin}
+            >
+              Login
+            </Button>
+          </View>
 
-        <Button
-          shadowless
-          round
-          onPress={handleLogin}
-          color="#f91545"
-          style={styles.loginButton}
-        >
-          <Text bold color="#fff">
-            Login
-          </Text>
-        </Button>
+          <View style={styles.hrContainer}>
+            <View style={styles.hrLine} />
+            <Text style={styles.orText}>Or</Text>
+            <View style={styles.hrLine} />
+          </View>
 
-        <View style={styles.hrContainer}>
-          <View style={styles.hrLine} />
-          <Text style={styles.orText}>Or</Text>
-          <View style={styles.hrLine} />
-        </View>
+          <View style={styles.socialLoginContainer}>
+            <GoogleSignIn />
+            {/* Add other social login buttons here */}
+          </View>
 
-        <View style={styles.socialLoginContainer}>
-          <GoogleSignIn />
-          {/* Add other social login buttons here */}
-        </View>
-
-        <View style={{ marginBottom: 40, marginLeft: 20, marginRight: 20 }}>
-          <Text bold style={{ textAlign: "center" }}>
-            Dont have an account?{" "}
-            <Text color="red" onPress={() => navigation.navigate("SignUp")}>
-              Sign up
+          <View style={{ marginBottom: 40, marginLeft: 20, marginRight: 20 }}>
+            <Text bold style={{ textAlign: "center" }}>
+              Dont have an account?{" "}
+              <Text
+                style={{ color: "red" }}
+                onPress={() => navigation.navigate("SignUp")}
+              >
+                Sign up
+              </Text>
             </Text>
-          </Text>
-        </View>
+          </View>
 
-        {/* Full Screen Preloader */}
-        {isLoading && (
-          <Modal transparent animationType="fade" visible={isLoading}>
-            <View style={styles.fullScreenLoader}>
-              <ActivityIndicator size="large" color="#0000ff" />
-            </View>
-          </Modal>
-        )}
+          {/* Full Screen Preloader */}
+          {isLoading && (
+            <Modal transparent animationType="fade" visible={isLoading}>
+              <View style={styles.fullScreenLoader}>
+                <ActivityIndicator size="large" color="#0000ff" />
+              </View>
+            </Modal>
+          )}
 
-        {/* Snackbar for displaying messages */}
-        <Snackbar
-          visible={snackbarVisible}
-          onDismiss={() => setSnackbarVisible(false)}
-          duration={Snackbar.DURATION_SHORT}
-          action={{
-            label: "OK",
-            onPress: () => {
-              // Do something if needed when Snackbar action button is pressed
-            },
-          }}
-        >
-          {snackbarMessage}
-        </Snackbar>
-      </KeyboardAvoidingView>
-    </>
-  );
+          {/* Snackbar for displaying messages */}
+          <Snackbar
+            visible={snackbarVisible}
+            onDismiss={() => setSnackbarVisible(false)}
+            duration={Snackbar.DURATION_SHORT}
+            action={{
+              label: "OK",
+              onPress: () => {
+                // Do something if needed when Snackbar action button is pressed
+              },
+            }}
+          >
+            {snackbarMessage}
+          </Snackbar>
+        </KeyboardAvoidingView>
+      </>
+    );
+  } catch (error) {
+    return (
+      <View>
+        <Text>{JSON.parse(error)}</Text>
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -168,6 +169,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 20,
     backgroundColor: "#f4f4f4",
+    alignContent: "center",
   },
 
   header: {
@@ -222,6 +224,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 20,
+    backgroundColor: "#f91545",
   },
 
   logoContainer: {

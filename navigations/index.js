@@ -231,7 +231,7 @@ function MainNavigator() {
   }, [navigation, auth]);
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser !== null) {
       // Start watching for location updates
       (async () => {
         let { status } = await Location.requestForegroundPermissionsAsync();
@@ -293,141 +293,151 @@ function MainNavigator() {
 
     return () => {};
   }, [auth]);
+  try {
+    return (
+      <>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home Navigation"
+            component={HomeNavigation}
+            options={{
+              headerLeft: () => null, // this hides the back button
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{
+              headerLeft: () => null, // this hides the back button
+              headerShown: false,
+              title: null,
+            }}
+          />
+          <Stack.Screen
+            name="SignUp"
+            component={SignupScreen}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen name="Registration" component={RegistrationScreen} />
+          <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+          <Stack.Screen name="Billing" component={BillingScreen} />
+          <Stack.Screen
+            name="Create Post"
+            component={CreatePost}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="MatchDetails"
+            component={MatchDetails}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="MessageDetails"
+            component={MessageDetails}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="DiscoveryInterest"
+            component={DiscoveryInterest}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="InterestUsers"
+            component={InterestUsers}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="ProfileDetailsScreen"
+            component={ProfileDetailsScreen}
+            options={{ title: null, headerShown: false }}
+          />
+          <Stack.Screen
+            name="Edit Profile"
+            component={EditProfile}
+            options={{
+              headerLeft: () => null, // this hides the back button
+              headerShown: false,
+              title: null,
+            }}
+          />
+          <Stack.Screen name="Location Setting" component={LocationScreen} />
+          <Stack.Screen name="Manage Account" component={ManageAccountScreen} />
+          <Stack.Screen
+            name="Feedback and Suggestion"
+            component={FeedBackAndSuggestion}
+          />
+          <Stack.Screen name="Account Actions" component={AccountActions} />
+          <Stack.Screen name="Privacy Settings" component={PrivacySettings} />
+          <Stack.Screen
+            name="Request Account Deletion"
+            component={RequestAccountDeletion}
+          />
+          <Stack.Screen name="Blocked Users" component={ViewBlockedUsers} />
+          <Stack.Screen name="Email Verification" component={VerifyEmail} />
+          <Stack.Screen name="Push Token" component={NotificationsComponent} />
 
-  return (
-    <>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home Navigation"
-          component={HomeNavigation}
-          options={{
-            headerLeft: () => null, // this hides the back button
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{
-            headerLeft: () => null, // this hides the back button
-            headerShown: false,
-            title: null,
-          }}
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignupScreen}
-          options={{ title: null, headerShown: false }}
-        />
-        <Stack.Screen name="Registration" component={RegistrationScreen} />
-        <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-        <Stack.Screen name="Billing" component={BillingScreen} />
-        <Stack.Screen
-          name="Create Post"
-          component={CreatePost}
-          options={{ title: null, headerShown: false }}
-        />
-        <Stack.Screen
-          name="MatchDetails"
-          component={MatchDetails}
-          options={{ title: null, headerShown: false }}
-        />
-        <Stack.Screen
-          name="MessageDetails"
-          component={MessageDetails}
-          options={{ title: null, headerShown: false }}
-        />
-        <Stack.Screen
-          name="DiscoveryInterest"
-          component={DiscoveryInterest}
-          options={{ title: null, headerShown: false }}
-        />
-        <Stack.Screen
-          name="InterestUsers"
-          component={InterestUsers}
-          options={{ title: null, headerShown: false }}
-        />
-        <Stack.Screen
-          name="ProfileDetailsScreen"
-          component={ProfileDetailsScreen}
-          options={{ title: null, headerShown: false }}
-        />
-        <Stack.Screen
-          name="Edit Profile"
-          component={EditProfile}
-          options={{
-            headerLeft: () => null, // this hides the back button
-            headerShown: false,
-            title: null,
-          }}
-        />
-        <Stack.Screen name="Location Setting" component={LocationScreen} />
-        <Stack.Screen name="Manage Account" component={ManageAccountScreen} />
-        <Stack.Screen
-          name="Feedback and Suggestion"
-          component={FeedBackAndSuggestion}
-        />
-        <Stack.Screen name="Account Actions" component={AccountActions} />
-        <Stack.Screen name="Privacy Settings" component={PrivacySettings} />
-        <Stack.Screen
-          name="Request Account Deletion"
-          component={RequestAccountDeletion}
-        />
-        <Stack.Screen name="Blocked Users" component={ViewBlockedUsers} />
-        <Stack.Screen name="Email Verification" component={VerifyEmail} />
-        <Stack.Screen name="Push Token" component={NotificationsComponent} />
-
-        <Stack.Screen name="Change Password" component={ChangePassword} />
-        <Stack.Screen name="Change Email" component={ChangeEmail} />
-        <Stack.Screen name="Select Location" component={SelectLocationScreen} />
-        <Stack.Screen name="Payments" component={Payments} />
-        <Stack.Screen name="View Image" component={ViewImageScreen} />
-        <Stack.Screen
-          name="Comments"
-          component={CommentScreen}
-          options={{
-            headerLeft: () => null, // this hides the back button
-            headerShown: false,
-            title: null,
-          }}
-        />
-        <Stack.Screen
-          name="List Of Users On Action"
-          component={ListOfUsersForAnAction}
-          options={({ route }) => ({
-            title: route.params?.headerTitle || "Home",
-          })}
-        />
-        <Stack.Screen
-          name="Create Story"
-          component={CreateStoriesScreen}
-          options={{
-            headerLeft: () => null, // this hides the back button
-            headerShown: false,
-            title: null,
-          }}
-        />
-        <Stack.Screen
-          name="Search"
-          component={SearchFriendsScreen}
-          options={{
-            headerLeft: () => null, // this hides the back button
-            headerShown: false,
-            title: null,
-          }}
-        />
-        <Stack.Screen
-          name="Notifications"
-          component={NotificationsHome}
-          options={{
-            headerLeft: () => null, // this hides the back button
-            headerShown: false,
-            title: null,
-          }}
-        />
-      </Stack.Navigator>
-    </>
-  );
+          <Stack.Screen name="Change Password" component={ChangePassword} />
+          <Stack.Screen name="Change Email" component={ChangeEmail} />
+          <Stack.Screen
+            name="Select Location"
+            component={SelectLocationScreen}
+          />
+          <Stack.Screen name="Payments" component={Payments} />
+          <Stack.Screen name="View Image" component={ViewImageScreen} />
+          <Stack.Screen
+            name="Comments"
+            component={CommentScreen}
+            options={{
+              headerLeft: () => null, // this hides the back button
+              headerShown: false,
+              title: null,
+            }}
+          />
+          <Stack.Screen
+            name="List Of Users On Action"
+            component={ListOfUsersForAnAction}
+            options={({ route }) => ({
+              title: route.params?.headerTitle || "Home",
+            })}
+          />
+          <Stack.Screen
+            name="Create Story"
+            component={CreateStoriesScreen}
+            options={{
+              headerLeft: () => null, // this hides the back button
+              headerShown: false,
+              title: null,
+            }}
+          />
+          <Stack.Screen
+            name="Search"
+            component={SearchFriendsScreen}
+            options={{
+              headerLeft: () => null, // this hides the back button
+              headerShown: false,
+              title: null,
+            }}
+          />
+          <Stack.Screen
+            name="Notifications"
+            component={NotificationsHome}
+            options={{
+              headerLeft: () => null, // this hides the back button
+              headerShown: false,
+              title: null,
+            }}
+          />
+        </Stack.Navigator>
+      </>
+    );
+  } catch (error) {
+    return (
+      <View>
+        <Text>{JSON.parse(error)}</Text>
+      </View>
+    );
+  }
 }
 
 export default MainNavigator;
